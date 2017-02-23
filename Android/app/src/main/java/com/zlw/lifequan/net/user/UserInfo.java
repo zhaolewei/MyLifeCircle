@@ -1,4 +1,4 @@
-package com.zlw.lifequan.bean;
+package com.zlw.lifequan.net.user;
 
 /**
  * Created by zlw on 2017/2/22.

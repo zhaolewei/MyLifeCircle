@@ -9,14 +9,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.zlw.lifequan.R;
-import com.zlw.lifequan.bean.UserInfo;
+import com.zlw.lifequan.net.Repository;
+import com.zlw.lifequan.net.user.UserInfo;
+import com.zlw.lifequan.utils.Logger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
     @BindView(R.id.ac_login_et_user)
     EditText et_username;
@@ -31,7 +37,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         setPresenter(new LoginPersenter());
-        et_username.setText("123");
+
+
     }
 
 
@@ -45,6 +52,32 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             return;
         }
         presenter.toLogin(new UserInfo(username, password));
+    }
+
+    @OnClick(R.id.ac_login_bt_register)
+    public void toRegister() {
+        Repository.getInstance().getUserService()
+                .test("123")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<String>() {
+                    @Override
+                    public void onCompleted() {
+                        Logger.d(TAG, "onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Logger.e(TAG, "onError:" + e);
+                        Logger.printStackTrace(e);
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Logger.d(TAG, "s:" + s);
+                        et_username.setText("s:" + s);
+                    }
+                });
     }
 
     @Override
