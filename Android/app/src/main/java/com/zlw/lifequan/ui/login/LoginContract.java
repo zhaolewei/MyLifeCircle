@@ -2,7 +2,7 @@ package com.zlw.lifequan.ui.login;
 
 import com.zlw.lifequan.base.BasePresenter;
 import com.zlw.lifequan.base.BaseView;
-import com.zlw.lifequan.net.user.UserInfo;
+import com.zlw.lifequan.bean.UserInfo;
 
 /**
  * Created by zlw on 2017/2/22.

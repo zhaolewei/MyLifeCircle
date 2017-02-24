@@ -1,6 +1,6 @@
 package com.zlw.lifequan.ui.login;
 
-import com.zlw.lifequan.net.user.UserInfo;
+import com.zlw.lifequan.bean.UserInfo;
 import com.zlw.lifequan.utils.Logger;
 
 /**

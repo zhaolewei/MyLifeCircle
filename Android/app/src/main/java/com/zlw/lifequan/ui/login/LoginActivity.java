@@ -12,7 +12,7 @@ import com.zlw.lifequan.MainActivity;
 import com.zlw.lifequan.R;
 import com.zlw.lifequan.base.MyTestData;
 import com.zlw.lifequan.net.Repository;
-import com.zlw.lifequan.net.user.UserInfo;
+import com.zlw.lifequan.bean.UserInfo;
 import com.zlw.lifequan.utils.Logger;
 
 import butterknife.BindView;

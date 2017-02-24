@@ -1,10 +1,12 @@
 package com.zlw.lifequan.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by zlw on 2017/2/6.
  */
 
-public class VCircleBean {
+public class VCircleBean  implements Serializable {
 
     private int vcircle_id;
     private String title;

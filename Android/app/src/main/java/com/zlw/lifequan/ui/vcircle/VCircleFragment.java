@@ -8,13 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.google.common.collect.Lists;
 import com.zlw.lifequan.R;
 import com.zlw.lifequan.bean.VCircleBean;
+import com.zlw.lifequan.ui.vcircle.details.VCircleDetailsActivity;
 
 import java.util.List;
 
@@ -34,9 +34,8 @@ public class VCircleFragment extends Fragment implements VCircleContract.View {
     RecyclerView vcircleRecyclerview;
     @BindView(R.id.vcircle_refreshlayout)
     BGARefreshLayout refreshLayout;
+
     private MyVcircleAdapter adapter;
-
-
     VCircleContract.Presenter presenter;
 
     @Override
@@ -51,7 +50,11 @@ public class VCircleFragment extends Fragment implements VCircleContract.View {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setPresenter(new VCirclePresenter());
+        initRV();
+        presenter.getRefreshData();
+    }
 
+    private void initRV() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         vcircleRecyclerview.setLayoutManager(linearLayoutManager);
@@ -61,11 +64,9 @@ public class VCircleFragment extends Fragment implements VCircleContract.View {
             @Override
             public void onItemClick(View view, int i) {
                 VCircleBean vCircleBean = adapter.getData().get(i);
-
-                Toast.makeText(getActivity(), "点击位置：" + i, Toast.LENGTH_SHORT).show();
+                VCircleDetailsActivity.startMe(getActivity(), vCircleBean);
             }
         });
-        presenter.getRefreshData();
     }
 
     private void initRefreshLayout() {

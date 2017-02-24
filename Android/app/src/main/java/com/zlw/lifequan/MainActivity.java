@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zlw.lifequan.test.TestFragment;
 import com.zlw.lifequan.ui.vcircle.VCircleFragment;
@@ -158,5 +160,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initTab();
+    }
+
+    private long backpressTime;
+
+    @Override
+    public void onBackPressed() {
+        if (SystemClock.elapsedRealtime() - backpressTime > 2000) {
+            backpressTime = SystemClock.elapsedRealtime();
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
