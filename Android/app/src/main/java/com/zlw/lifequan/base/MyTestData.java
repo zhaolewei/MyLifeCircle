@@ -6,11 +6,8 @@ package com.zlw.lifequan.base;
 
 public class MyTestData {
 
-
-    public String my_username = "zlw";
-    public String my_password = "123";
-
-
-
+    //用户
+    public static final String username = "zlw";
+    public static final String password = "525252";
 
 }

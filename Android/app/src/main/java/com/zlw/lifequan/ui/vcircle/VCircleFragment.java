@@ -1,4 +1,4 @@
-package com.zlw.lifequan.vcircle;
+package com.zlw.lifequan.ui.vcircle;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

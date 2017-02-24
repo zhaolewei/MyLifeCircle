@@ -23,6 +23,7 @@ public class LoginPersenter implements LoginContract.Presenter {
             Logger.e(TAG, "view is null");
             return;
         }
+        //TODO:信息校验
 
         view.toMain();
     }

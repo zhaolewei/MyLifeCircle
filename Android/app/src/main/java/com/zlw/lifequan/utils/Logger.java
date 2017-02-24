@@ -17,12 +17,6 @@ public class Logger {
 
     private static final String space = "----------------------------------------------------------------------------------------------------";
 
-//    private static boolean LOGV = false;
-//    private static boolean LOGD = false;
-//    private static boolean LOGI = false;
-//    private static boolean LOGW = false;
-//    private static boolean LOGE = false;
-
     public static void v(String tag, String format, Object... args) {
         if (sIsDebug) {
             List<String> list = buildMessage(format, args);

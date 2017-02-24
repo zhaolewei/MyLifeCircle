@@ -8,7 +8,9 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.zlw.lifequan.MainActivity;
 import com.zlw.lifequan.R;
+import com.zlw.lifequan.base.MyTestData;
 import com.zlw.lifequan.net.Repository;
 import com.zlw.lifequan.net.user.UserInfo;
 import com.zlw.lifequan.utils.Logger;
@@ -37,6 +39,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         setPresenter(new LoginPersenter());
+
+        if (Logger.sIsDebug) {
+            et_username.setText(MyTestData.username);
+            et_password.setText(MyTestData.password);
+        }
 
 
     }
@@ -93,6 +100,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void toMain() {
         showMsg("登陆成功");
+        MainActivity.startMe(this);
+        this.finish();
     }
 
     @Override

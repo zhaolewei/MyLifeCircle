@@ -1,5 +1,7 @@
 package com.zlw.lifequan;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -12,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zlw.lifequan.test.TestFragment;
-import com.zlw.lifequan.vcircle.VCircleFragment;
+import com.zlw.lifequan.ui.vcircle.VCircleFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
     private int[] tab_icon = new int[]{R.drawable.img, R.drawable.img, R.drawable.img};
     String[] tabData = new String[]{"V圈", "发现", "我"};
 
+
+    public static void startMe(Context context) {
+        context.startActivity(new Intent(context, MainActivity.class));
+
+    }
+
     protected void initTab() {
         List<Fragment> fragments = new ArrayList<Fragment>();
         fragments.add(new VCircleFragment());
@@ -50,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 int offset = (int) (positionOffset * 255);
 
                 // 左右两图渐变处理 255：白 0：红
-
                 if (position < ivs.size() - 1) {
                     ImageView imgView2 = ivs.get(position + 1);
                     imgView.setImageAlpha(255 - offset);
@@ -70,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mTabLayout.setupWithViewPager(mViewPager);
-// 设置TabLayout中的Tab样式
+        // 设置TabLayout中的Tab样式
         ivs = new ArrayList<ImageView>();
         tvs = new ArrayList<TextView>();
         for (int i = 0; i < fragments.size(); i++) {

@@ -1,4 +1,4 @@
-package com.zlw.lifequan.vcircle;
+package com.zlw.lifequan.ui.vcircle;
 
 import com.zlw.lifequan.bean.VCircleBean;
 import com.zlw.lifequan.test.MyTestData;
