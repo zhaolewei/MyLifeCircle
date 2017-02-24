@@ -22,6 +22,6 @@ public class LoginContract {
     interface Presenter extends BasePresenter {
         void addView(LoginContract.View view);
 
-        void toLogin(UserInfo userInfo);
+        void login(UserInfo userInfo);
     }
 }

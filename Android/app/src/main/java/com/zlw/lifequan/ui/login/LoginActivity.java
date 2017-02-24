@@ -1,6 +1,8 @@
 package com.zlw.lifequan.ui.login;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +13,12 @@ import android.widget.Toast;
 import com.zlw.lifequan.MainActivity;
 import com.zlw.lifequan.R;
 import com.zlw.lifequan.base.MyTestData;
-import com.zlw.lifequan.net.Repository;
 import com.zlw.lifequan.bean.UserInfo;
+import com.zlw.lifequan.net.Repository;
+import com.zlw.lifequan.ui.register.RegisterActivity;
 import com.zlw.lifequan.utils.Logger;
+
+import java.io.Serializable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +30,7 @@ import rx.schedulers.Schedulers;
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
+    private static final String KEY_BEAN = "KEY_BEAN";
 
     @BindView(R.id.ac_login_et_user)
     EditText et_username;
@@ -32,6 +38,19 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     EditText et_password;
 
     private LoginContract.Presenter presenter;
+
+    private UserInfo userInfo;
+
+
+    public static void startMe(Context context, UserInfo bean) {
+
+        Intent intent = new Intent(context, LoginActivity.class);
+        if (bean != null) {
+            intent.putExtra(KEY_BEAN, bean);
+        }
+        context.startActivity(intent);
+
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +67,24 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     }
 
+    private void initData() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            Serializable serializable = intent.getSerializableExtra(KEY_BEAN);
+            if (serializable == null) {
+                return;
+            }
+            if (serializable instanceof UserInfo) {
+                userInfo = (UserInfo) serializable;
+                if (userInfo == null) {
+                    return;
+                }
+            } else {
+                return;
+
+            }
+        }
+    }
 
     @OnClick(R.id.ac_login_bt_login)
     public void toLogin() {
@@ -58,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             showMsg("用户名或密码不能为空");
             return;
         }
-        presenter.toLogin(new UserInfo(username, password));
+        presenter.login(new UserInfo(username, password));
     }
 
     @OnClick(R.id.ac_login_bt_register)
@@ -85,6 +122,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
                         et_username.setText("s:" + s);
                     }
                 });
+        RegisterActivity.startMe(this);
+        overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
 
     @Override

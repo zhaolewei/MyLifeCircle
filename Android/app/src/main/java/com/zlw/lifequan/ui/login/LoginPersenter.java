@@ -17,7 +17,7 @@ public class LoginPersenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void toLogin(UserInfo userInfo) {
+    public void login(UserInfo userInfo) {
 
         if (view == null) {
             Logger.e(TAG, "view is null");
