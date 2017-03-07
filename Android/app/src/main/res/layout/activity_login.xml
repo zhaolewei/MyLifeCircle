@@ -105,4 +105,27 @@
         android:text="注册"
         android:textColor="#FFAA25" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="12dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/ac_login_bt_weixin"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="50dp"
+            android:src="@drawable/umeng_socialize_wechat" />
+
+        <ImageView
+            android:id="@+id/ac_login_bt_qq"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/umeng_socialize_qq" />
+
+    </LinearLayout>
+
+
 </RelativeLayout>

@@ -10,6 +10,9 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.zlw.lifequan.MainActivity;
 import com.zlw.lifequan.R;
 import com.zlw.lifequan.base.MyTestData;
@@ -19,6 +22,7 @@ import com.zlw.lifequan.ui.register.RegisterActivity;
 import com.zlw.lifequan.utils.Logger;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,9 +42,30 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     EditText et_password;
 
     private LoginContract.Presenter presenter;
+    UMShareAPI mShareAPI;
 
     private UserInfo userInfo;
+    private UMAuthListener umAuthListener = new UMAuthListener() {
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+            //授权开始的回调
+        }
 
+        @Override
+        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+            Toast.makeText(getApplicationContext(), "Authorize succeed", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+            Toast.makeText(getApplicationContext(), "Authorize fail", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform, int action) {
+            Toast.makeText(getApplicationContext(), "Authorize cancel", Toast.LENGTH_SHORT).show();
+        }
+    };
 
     public static void startMe(Context context, UserInfo bean) {
 
@@ -58,6 +83,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         setPresenter(new LoginPersenter());
+        mShareAPI = UMShareAPI.get(this);
 
         if (Logger.sIsDebug) {
             et_username.setText(MyTestData.username);
@@ -96,6 +122,25 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             return;
         }
         presenter.login(new UserInfo(username, password));
+    }
+
+    @OnClick(R.id.ac_login_bt_weixin)
+    public void toLogin_Weixin() {
+        mShareAPI.doOauthVerify(this, SHARE_MEDIA.WEIXIN, umAuthListener);
+
+    }
+
+    @OnClick(R.id.ac_login_bt_qq)
+    public void toLogin_QQ() {
+        mShareAPI.doOauthVerify(this, SHARE_MEDIA.QQ, umAuthListener);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+        Logger.d("result", "onActivityResult");
     }
 
     @OnClick(R.id.ac_login_bt_register)
