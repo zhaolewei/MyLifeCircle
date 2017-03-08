@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zlw.lifequan.test.TestFragment;
+import com.zlw.lifequan.ui.my.MyInfoFragment;
 import com.zlw.lifequan.ui.vcircle.VCircleFragment;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         List<Fragment> fragments = new ArrayList<Fragment>();
         fragments.add(new VCircleFragment());
         fragments.add(new TestFragment());
-        fragments.add(new TestFragment());
+        fragments.add(new MyInfoFragment());
 
         mViewPager.setAdapter(new MainViewPagerAdapter(getSupportFragmentManager(), fragments));
         mViewPager.setOffscreenPageLimit(3);
