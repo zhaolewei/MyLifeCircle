@@ -9,7 +9,7 @@
 			<generator class="identity"></generator>
 		</id>
 		<property name="username" type="java.lang.String" />
-		<property name="password" type="java.lang.String" />
+		<property name="paw" type="java.lang.String" />
 		<property name="state" type="java.lang.String" />
 		<property name="date" type="java.lang.String" />
 		<property name="address" type="java.lang.String" />

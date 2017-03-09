@@ -14,6 +14,7 @@ import com.zlw.bean.User;
 import com.zlw.config.Conn;
 import com.zlw.utils.DateHelper;
 import com.zlw.utils.HibernateUtils;
+import com.zlw.utils.JsonTools;
 
 public class UserDao2 {
 
@@ -113,8 +114,14 @@ public class UserDao2 {
 	 * @return
 	 */
 	public boolean regiestUser(User user) {
+		System.out.println("jsondata: " + JsonTools.toJson(user));
 		try {
 			user.setDate(DateHelper.getDateStr());
+			user.setAddress(null);
+			user.setEmail(null);
+			user.setPhonenum(null);
+			user.setState(null);
+
 			Session session = HibernateUtils.getSession();
 			session.save(user);
 			session.close();

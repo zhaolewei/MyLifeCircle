@@ -3,7 +3,7 @@ package com.zlw.bean;
 public class User {
 	private Integer user_id; // 用户Id
 	private String username;// 用户名
-	private String password;// 密码
+	private String paw;// 密码
 	private String state;// 用户状态
 	private String date;// 用户创建时间
 	private String address;// 收货地址
@@ -42,12 +42,12 @@ public class User {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPaw() {
+		return paw;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPaw(String paw) {
+		this.paw = paw;
 	}
 
 	public String getState() {
@@ -98,13 +98,12 @@ public class User {
 		this.user_photo = user_photo;
 	}
 
-	public User(Integer user_id, String username, String password,
-			String state, String date, String address, String phonenum,
-			String email, String user_photo) {
+	public User(Integer user_id, String username, String paw, String state, String date, String address,
+			String phonenum, String email, String user_photo) {
 		super();
 		this.user_id = user_id;
 		this.username = username;
-		this.password = password;
+		this.paw = paw;
 		this.state = state;
 		this.date = date;
 		this.address = address;

@@ -6,11 +6,16 @@
 	<package name="" extends="struts-default">
 
 		<!-- 用户登陆验证 -->
-		<action name="islogin" class="com.zlw.action.UserAction"
-			method="islogin">
+		<action name="login" class="com.zlw.action.UserAction" method="islogin">
 			<result name="success">show/result.jsp</result>
 		</action>
-
-
+		<action name="register" class="com.zlw.action.UserAction"
+			method="register">
+			<result name="success">show/result.jsp</result>
+		</action>
+		<action name="updataUser" class="com.zlw.action.UserAction"
+			method="updataUser">
+			<result name="success">show/result.jsp</result>
+		</action>
 	</package>
 </struts>
