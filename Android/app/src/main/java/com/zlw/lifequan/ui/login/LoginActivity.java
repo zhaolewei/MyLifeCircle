@@ -15,9 +15,9 @@ import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.zlw.lifequan.MainActivity;
 import com.zlw.lifequan.R;
-import com.zlw.lifequan.base.MyTestData;
 import com.zlw.lifequan.bean.UserInfo;
 import com.zlw.lifequan.net.Repository;
+import com.zlw.lifequan.test.MyTestData;
 import com.zlw.lifequan.ui.register.RegisterActivity;
 import com.zlw.lifequan.utils.Logger;
 

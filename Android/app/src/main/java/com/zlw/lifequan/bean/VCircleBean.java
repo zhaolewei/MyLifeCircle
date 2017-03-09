@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by zlw on 2017/2/6.
  */
 
-public class VCircleBean  implements Serializable {
+public class VCircleBean implements Serializable {
 
     private int vcircle_id;
     private String title;
@@ -14,18 +14,19 @@ public class VCircleBean  implements Serializable {
     private String create_data;
 
     //数据资源
-    private Type type;
+    private VCircleType type;
     private String[] raws;//资源路径s
 
     //用户索引
     private int user_id;
+    private UserInfo userInfo;
 
 
     public VCircleBean() {
 
     }
 
-    public VCircleBean(int vcircle_id, String title, String content, String create_data, Type type, String[] raws, int user_id) {
+    public VCircleBean(int vcircle_id, String title, String content, String create_data, VCircleType type, String[] raws, int user_id, UserInfo userInfo) {
         this.vcircle_id = vcircle_id;
         this.title = title;
         this.content = content;
@@ -33,12 +34,15 @@ public class VCircleBean  implements Serializable {
         this.type = type;
         this.raws = raws;
         this.user_id = user_id;
+        this.userInfo = userInfo;
     }
 
-    public VCircleBean(int vcircle_id, String title, String content) {
-        this.vcircle_id = vcircle_id;
-        this.title = title;
-        this.content = content;
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     public int getVcircle_id() {
@@ -73,11 +77,11 @@ public class VCircleBean  implements Serializable {
         this.create_data = create_data;
     }
 
-    public Type getType() {
+    public VCircleType getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(VCircleType type) {
         this.type = type;
     }
 
@@ -97,7 +101,7 @@ public class VCircleBean  implements Serializable {
         this.user_id = user_id;
     }
 
-    enum Type {
-        TYPE_IMAGE, TYPE_TEXT, TEXT_GIF, TEXT_VIDEO
+    public enum VCircleType {
+        TYPE_IMAGE, TYPE_TEXT, TYPE_GIF, TYPE_VIDEO
     }
 }

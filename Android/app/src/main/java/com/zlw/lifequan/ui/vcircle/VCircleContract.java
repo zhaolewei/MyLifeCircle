@@ -14,11 +14,16 @@ public class VCircleContract {
 
     interface View extends BaseView<Presenter> {
         void setRefreshData(List<VCircleBean> list);
+
+        void setLoadMoreData(List<VCircleBean> list);
+
     }
 
     interface Presenter extends BasePresenter {
         void addView(View view);
 
-        void getRefreshData();
+        void onRefreshData(int size);
+        void onLoadMore(int offset, int size);
+
     }
 }

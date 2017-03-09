@@ -93,9 +93,9 @@ public class MyInfoFragment extends Fragment {
     }
 
     private void applyUserInfo() {
+        Logger.d(TAG, "applyUserInfo");
         String test_img = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489544349&di=644e6e0e23daacf7e69903a46bffddc9&imgtype=jpg&er=1&src=http%3A%2F%2Fimg01.taopic.com%2F150822%2F234928-150R215404322.jpg";
 
-        Logger.d(TAG, "applyUserInfo");
         Glide.with(this)
                 .load(test_img)
                 .crossFade()
@@ -105,12 +105,10 @@ public class MyInfoFragment extends Fragment {
 
                     @Override
                     public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-                        Logger.d(TAG, "onResourceReady");
 
                         if (resource == null) {
                             return;
                         }
-
                         myinfoUserHeadphone.setImageDrawable(resource.getCurrent());
                         Bitmap bitmap = Bitmap.createScaledBitmap(BitmapUtil.drawable2Bitmap(resource.getCurrent()), 90, 160, false);//有损缩放
 
