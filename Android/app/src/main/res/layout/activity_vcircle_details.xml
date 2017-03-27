@@ -4,13 +4,47 @@
     android:id="@+id/activity_vcircle_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zlw.lifequan.ui.vcircle.details.VCircleDetailsActivity">
+    tools:context="com.zlw.lifequan.ui.vcircle.details.VCircleCommentActivity">
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/ac_vcircle_details_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/vcircle_dynamic_info_ll_comment">
 
     </android.support.v7.widget.RecyclerView>
+
+
+    <com.zlw.lifequan.weiget.MyResizeLinearLayout
+        android:id="@+id/vcircle_dynamic_info_ll_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#efeff2"
+        android:fitsSystemWindows="true">
+
+        <EditText
+            android:id="@+id/vcircle_dynamic_info_et_comment_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_comment_edit_text_bg"
+            android:hint="评论："
+            android:imeOptions="actionSend"
+            android:inputType="text"
+            android:maxLength="140"
+            android:maxLines="6"
+            android:minHeight="36dp"
+            android:paddingBottom="6dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="6dp"
+            android:textColorHint="#888"
+            android:textSize="13sp" />
+
+    </com.zlw.lifequan.weiget.MyResizeLinearLayout>
 </RelativeLayout>

@@ -47,9 +47,14 @@
             android:screenOrientation="portrait" />
         <!--V圈-->
         <activity
-            android:name=".ui.vcircle.details.VCircleDetailsActivity"
+            android:name=".ui.vcircle.details.VCircleCommentActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.vcircle.image.PhotoViewActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
         <!--Auth-Umeng-->
         <!--qq-->
         <activity

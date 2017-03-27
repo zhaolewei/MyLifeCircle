@@ -3,6 +3,7 @@ package com.zlw.lifequan.test;
 import com.google.common.collect.Lists;
 import com.zlw.lifequan.bean.UserInfo;
 import com.zlw.lifequan.bean.VCircleBean;
+import com.zlw.lifequan.bean.VCircleCommentBean;
 
 import java.util.List;
 
@@ -46,5 +47,19 @@ public class MyTestData {
     public static VCircleBean getVCircle() {
         return new VCircleBean(1, "title", "content", "2017/3/5", VCircleBean.VCircleType.TYPE_TEXT,
                 new String[]{}, 1, getUser());
+    }
+
+    public static List<VCircleCommentBean> getCommentList() {
+        List<VCircleCommentBean> list = Lists.newArrayList();
+        list.add(new VCircleCommentBean("1", "评论1", "1", getUser(), "now"));
+        list.add(new VCircleCommentBean("2", "评论2", "1", getUser(), "now"));
+        list.add(new VCircleCommentBean("3", "评论3", "1", getUser(), "now"));
+        list.add(new VCircleCommentBean("1", "评论1", "1", getUser(), "now"));
+        list.add(new VCircleCommentBean("2", "评论2", "1", getUser(), "now"));
+        list.add(new VCircleCommentBean("3", "评论3", "1", getUser(), "now"));
+        list.add(new VCircleCommentBean("1", "评论1", "1", getUser(), "now"));
+        list.add(new VCircleCommentBean("2", "评论2", "1", getUser(), "now"));
+        list.add(new VCircleCommentBean("3", "评论3", "1", getUser(), "now"));
+        return list;
     }
 }

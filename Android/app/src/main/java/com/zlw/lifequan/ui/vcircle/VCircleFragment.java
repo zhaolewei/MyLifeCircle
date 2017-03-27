@@ -1,5 +1,6 @@
 package com.zlw.lifequan.ui.vcircle;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,7 +19,7 @@ import com.google.common.collect.Lists;
 import com.zlw.lifequan.R;
 import com.zlw.lifequan.bean.VCircleBean;
 import com.zlw.lifequan.test.MyTestData;
-import com.zlw.lifequan.ui.vcircle.details.VCircleDetailsActivity;
+import com.zlw.lifequan.ui.vcircle.details.VCircleCommentActivity;
 import com.zlw.lifequan.utils.CollectionUtils;
 import com.zlw.lifequan.utils.Logger;
 
@@ -29,11 +30,11 @@ import butterknife.ButterKnife;
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by zlw on 2017/2/5.
  */
-
 public class VCircleFragment extends Fragment implements VCircleContract.View {
     private static final String TAG = VCircleFragment.class.getSimpleName();
     private static final int PAGE_SIZE = 6;
@@ -68,11 +69,12 @@ public class VCircleFragment extends Fragment implements VCircleContract.View {
         vcircleRecyclerview.setLayoutManager(linearLayoutManager);
         adapter = new MyVcircleAdapter();
         vcircleRecyclerview.setAdapter(adapter);
+        vcircleRecyclerview.addItemDecoration(new SpaceItemDecoration(12), -1);
         adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
                 VCircleBean vCircleBean = adapter.getData().get(i);
-                VCircleDetailsActivity.startMe(getActivity(), vCircleBean);
+                VCircleCommentActivity.startMe(getActivity(), vCircleBean);
             }
         });
         adapter.openLoadMore(PAGE_SIZE, true);
@@ -158,7 +160,7 @@ public class VCircleFragment extends Fragment implements VCircleContract.View {
                     .placeholder(R.drawable.test_userphoto)
                     .dontAnimate()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into((ImageView) baseViewHolder.getView(R.id.item_user_photo));
+                    .into((CircleImageView) baseViewHolder.getView(R.id.item_user_photo));
             //内容图片
             int length = vCircleBean.getRaws().length;
             if (length == 1) {
@@ -221,6 +223,22 @@ public class VCircleFragment extends Fragment implements VCircleContract.View {
             }
 
 
+        }
+    }
+
+    public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
+
+        private int space;
+
+        public SpaceItemDecoration(int space) {
+            this.space = space;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+
+            if (parent.getChildPosition(view) != 0)
+                outRect.top = space;
         }
     }
 }

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.zlw.lifequan.test.TestFragment;
 import com.zlw.lifequan.ui.my.MyInfoFragment;
 import com.zlw.lifequan.ui.vcircle.VCircleFragment;
+import com.zlw.lifequan.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     @BindView(R.id.main_vp)
     ViewPager mViewPager;
     @BindView(R.id.main_tabLayout)
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static void startMe(Context context) {
+        Logger.d(TAG, "----------主界面-----------");
         context.startActivity(new Intent(context, MainActivity.class));
 
     }
